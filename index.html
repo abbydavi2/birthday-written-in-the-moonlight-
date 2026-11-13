@@ -84,8 +84,12 @@ body {
   align-items: center;
   position: relative;
   text-align: center;
-  z-index: 1;
+  pointer-events: none;
+  z-index: 3;
 }
+  .content button {
+  pointer-events: auto;
+}  
 .story-top {
   width: 100%;
 }
@@ -218,7 +222,7 @@ body.ending #experience::after {
 #effects {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
   overflow: hidden;
   pointer-events: none;
 }
@@ -392,7 +396,7 @@ body.ending #effects::before {
 
 .firefly {
   position: absolute;
-  z-index: 3;
+  z-index: 3;  
   pointer-events: auto;
   width: 18px;
   height: 18px;
