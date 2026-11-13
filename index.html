@@ -428,6 +428,56 @@ body.ending #effects::before {
 body.woods #effects.complete {
   filter: brightness(1.35);
 }
+  /* WALKING DEAD - FOOTPRINTS */
+.footprint {
+  position: absolute;
+  z-index: 2;
+  width: 20px;
+  height: 34px;
+  opacity: 0;
+  filter: drop-shadow(0 0 7px rgba(220,230,225,.5));
+  animation: footprintReveal .9s ease forwards;
+  pointer-events: none;
+}
+
+.footprint::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  bottom: 0;
+  width: 11px;
+  height: 23px;
+  border-radius: 55% 45% 48% 52% / 35% 35% 65% 65%;
+  background: rgba(220,230,225,.58);
+}
+
+.footprint::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(220,230,225,.58);
+  box-shadow:
+    -5px 5px 0 -1px rgba(220,230,225,.5),
+    5px 5px 0 -1px rgba(220,230,225,.5);
+}
+
+.footprint.left { --turn: -18deg; }
+.footprint.right { --turn: 18deg; }
+
+@keyframes footprintReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.65) rotate(var(--turn));
+  }
+  to {
+    opacity: .65;
+    transform: translateY(0) scale(1) rotate(var(--turn));
+  }
+}
 </style>
 </head>
 <body>
@@ -607,6 +657,26 @@ function createSceneInteraction(theme) {
       });
 
       effects.appendChild(firefly);
+    });
+  }
+
+  if (theme === "walkingdead") {
+    const footprints = [
+      { left: "44%", top: "78%", side: "left", delay: "0s" },
+      { left: "55%", top: "68%", side: "right", delay: "1s" },
+      { left: "43%", top: "58%", side: "left", delay: "2s" },
+      { left: "56%", top: "48%", side: "right", delay: "3s" },
+      { left: "44%", top: "38%", side: "left", delay: "4s" },
+      { left: "55%", top: "28%", side: "right", delay: "5s" }
+    ];
+
+    footprints.forEach((step) => {
+      const footprint = document.createElement("span");
+      footprint.className = "footprint " + step.side;
+      footprint.style.left = step.left;
+      footprint.style.top = step.top;
+      footprint.style.animationDelay = step.delay;
+      effects.appendChild(footprint);
     });
   }
 }
