@@ -518,13 +518,50 @@ const musicButton = document.getElementById("music");
   const effects = document.getElementById("effects");
 
 function createParticles(theme) {
-  function createSceneInteraction(theme) {
+  effects.innerHTML = "";
+  effects.classList.remove("complete");
+  sceneImage.classList.remove("effect-active");
+
+  const settings = {
+    intro: { count: 18, color: "#dce8e5" },
+    zombie: { count: 12, color: "#a8b6a9" },
+    woods: { count: 28, color: "#aaffcc" },
+    walkingdead: { count: 18, color: "#c7c7b5" },
+    gate: { count: 35, color: "#d8c4ff" },
+    otherworld: { count: 32, color: "#e9aaff" },
+    moon: { count: 24, color: "#c7ddff" },
+    ending: { count: 38, color: "#ff795f" }
+  };
+
+  const config = settings[theme] || settings.intro;
+
+  for (let i = 0; i < config.count; i++) {
+    const particle = document.createElement("span");
+    particle.className = "effect-particle";
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = (35 + Math.random() * 65) + "%";
+    particle.style.background = config.color;
+    particle.style.setProperty("--duration", (4 + Math.random() * 6) + "s");
+    particle.style.setProperty("--delay", (-Math.random() * 8) + "s");
+    particle.style.setProperty("--drift", (Math.random() * 50 - 25) + "px");
+    particle.style.setProperty("--opacity", (0.3 + Math.random() * 0.6));
+
+    const size = 2 + Math.random() * 4;
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    effects.appendChild(particle);
+  }
+}
+
+function createSceneInteraction(theme) {
   if (theme === "zombie") {
     const flashlight = document.createElement("div");
     flashlight.className = "flashlight-overlay";
     flashlight.setAttribute("aria-label", "Tap to use flashlight");
 
-    flashlight.addEventListener("click", (event) => {
+    flashlight.addEventListener("pointerdown", (event) => {
       const x = event.clientX / window.innerWidth * 100;
       const y = event.clientY / window.innerHeight * 100;
 
@@ -566,40 +603,6 @@ function createParticles(theme) {
 
       effects.appendChild(firefly);
     });
-  }
-}
-  effects.innerHTML = "";
-
-  const settings = {
-    intro: { count: 18, color: "#dce8e5" },
-    zombie: { count: 12, color: "#a8b6a9" },
-    woods: { count: 28, color: "#aaffcc" },
-    walkingdead: { count: 18, color: "#c7c7b5" },
-    gate: { count: 35, color: "#d8c4ff" },
-    otherworld: { count: 32, color: "#e9aaff" },
-    moon: { count: 24, color: "#c7ddff" },
-    ending: { count: 38, color: "#ff795f" }
-  };
-
-  const config = settings[theme] || settings.intro;
-
-  for (let i = 0; i < config.count; i++) {
-    const particle = document.createElement("span");
-    particle.className = "effect-particle";
-
-    particle.style.left = Math.random() * 100 + "%";
-    particle.style.top = (35 + Math.random() * 65) + "%";
-    particle.style.background = config.color;
-    particle.style.setProperty("--duration", (4 + Math.random() * 6) + "s");
-    particle.style.setProperty("--delay", (-Math.random() * 8) + "s");
-    particle.style.setProperty("--drift", (Math.random() * 50 - 25) + "px");
-    particle.style.setProperty("--opacity", (0.3 + Math.random() * 0.6));
-
-    const size = 2 + Math.random() * 4;
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
-
-    effects.appendChild(particle);
   }
 }
 function showChapter(index) {
