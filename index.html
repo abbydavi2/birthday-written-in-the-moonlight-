@@ -3,246 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#06110d">
+<meta name="theme-color" content="#030706">
 <title>Birthday Written in the Moonlight</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap');
-
 :root {
-  --emerald:#087653;
-  --silver:#d7ded9;
-  --black:#030706;
+  --silver: #d7ded9;
+  --black: #030706;
+  --emerald: #087653;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--black);color:#f1f1ed;
-  font-family:'Cormorant Garamond',serif;
-  min-height:100vh;overflow-x:hidden;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: #f5f4ef;
+  font-family: 'Cormorant Garamond', serif;
+  min-height: 100vh;
+  overflow: hidden;
 }
-#experience{
-  min-height:100vh;position:relative;display:flex;
-  align-items:center;justify-content:center;text-align:center;
-  padding:35px 22px;isolation:isolate;overflow:hidden;
+#experience {
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0 22px;
 }
-#experience::before{
-  content:"";position:absolute;inset:0;z-index:-2;
+#experience::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
   background:
-    radial-gradient(ellipse at 50% 30%,rgba(8,118,83,.30),transparent 48%),
+    radial-gradient(ellipse at 50% 30%, rgba(8,118,83,.25), transparent 50%),
     linear-gradient(160deg,#07120e,#020403 75%);
-  transition:background 1s ease;
 }
-#experience::after{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.12) 60%,rgba(0,0,0,.35));
+#experience::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,.05) 35%,
+      rgba(0,0,0,.12) 55%,
+      rgba(0,0,0,.82) 100%
+    );
+  pointer-events: none;
 }
-.scene-image{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;z-index:-2;opacity:.58;
-  display:none;
-}
-.content{width:min(720px,100%);margin:auto;position:relative;padding:35px 0}
-.eyebrow{
-  font-family:'Cinzel',serif;letter-spacing:5px;font-size:10px;
-  color:#a8c9b9;text-transform:uppercase;margin-bottom:28px;
-}
-h1,h2{
-  font-family:'Cinzel',serif;font-weight:400;line-height:1.35;
-  text-shadow:0 2px 25px #000;
-}
-h1{font-size:clamp(30px,7vw,58px);letter-spacing:3px}
-h2{font-size:clamp(25px,6vw,42px);letter-spacing:2px}
-p{
-  font-size:clamp(19px,4vw,25px);line-height:1.55;
-  color:#e0e5e1;max-width:570px;margin:22px auto;
-}
-.moon{
-  width:105px;height:105px;border-radius:50%;margin:0 auto 38px;
-  background:radial-gradient(circle at 35% 35%,#fff,#d5e5d9 48%,#718b7c 78%,#253b30);
-  box-shadow:0 0 35px rgba(185,230,205,.45),0 0 100px rgba(20,130,85,.3);
-}
-button{
-  background:transparent;border:1px solid rgba(191,224,205,.65);
-  color:#f4f5f0;padding:14px 26px;margin:14px 7px 0;
-  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
-  cursor:pointer;transition:.3s;
-}
-button:hover{background:rgba(8,118,83,.4);border-color:#c8e6d5}
-#music{
-  position:fixed;top:18px;right:16px;z-index:5;
-  padding:10px 13px;font-size:9px;background:rgba(0,0,0,.5);
-}
-#progress{
-  position:fixed;bottom:0;left:0;height:2px;background:#16865e;
-  width:0;transition:width .5s;z-index:5;
-}
-.hidden{display:none}
-.fade{animation:appear 1.2s ease both}
-@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-  /* CINEMATIC MOTION */
 .scene-image {
-  animation: cinematicZoom 18s ease-in-out infinite alternate;
-  transform-origin: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+  opacity: .88;
+  animation: cinematicZoom 24s ease-in-out infinite alternate;
 }
-
 @keyframes cinematicZoom {
   from { transform: scale(1); }
-  to { transform: scale(1.12); }
+  to { transform: scale(1.09); }
 }
-
-/* COSMIC GATEWAY */
-body.cosmic #experience::before {
+.content {
+  width: min(720px,100%);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: auto;
+  padding: max(65px, 11vh) 0 max(75px, 10vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+.story-top {
+  width: 100%;
+}
+.story-bottom {
+  width: 100%;
+  padding: 20px 10px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(0,0,0,.22) 20%,
+    rgba(0,0,0,.48)
+  );
+}
+.eyebrow {
+  font-family: 'Cinzel',serif;
+  letter-spacing: 4px;
+  font-size: 10px;
+  color: #c5d4cc;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+h1 {
+  font-family: 'Cinzel',serif;
+  font-weight: 400;
+  line-height: 1.35;
+  font-size: clamp(27px,7vw,52px);
+  letter-spacing: 2px;
+  text-shadow: 0 2px 25px #000;
+  margin: 0 auto;
+}
+p {
+  font-size: clamp(18px,4vw,24px);
+  line-height: 1.5;
+  color: #f0f0eb;
+  max-width: 570px;
+  margin: 0 auto 20px;
+  text-shadow: 0 2px 15px #000;
+}
+button {
+  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(220,230,222,.75);
+  color: #fff;
+  padding: 14px 24px;
+  margin: 8px 5px;
+  font-family: 'Cinzel',serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .35s;
+}
+button:hover {
+  background: rgba(255,255,255,.14);
+  border-color: white;
+}
+#music {
+  position: fixed;
+  top: 16px;
+  right: 14px;
+  z-index: 10;
+  padding: 10px 13px;
+  font-size: 9px;
+  background: rgba(0,0,0,.55);
+}
+#progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #d7ded9;
+  width: 0;
+  transition: width .6s;
+  z-index: 10;
+}
+.navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.navigation button {
+  min-width: 115px;
+}
+.fade {
+  animation: appear 1.1s ease both;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* THE GATE */
+body.gate #experience::after {
   background:
-    radial-gradient(ellipse at 50% 48%, rgba(116,55,180,.38), transparent 35%),
-    radial-gradient(ellipse at 50% 30%, rgba(8,118,83,.4), transparent 60%),
-    radial-gradient(circle at 20% 20%, #263b69, transparent 30%),
-    linear-gradient(160deg,#080817,#020403 80%);
-  animation: cosmicPulse 7s ease-in-out infinite alternate;
+    linear-gradient(180deg,rgba(0,0,0,.55),transparent 38%,rgba(0,0,0,.72)),
+    radial-gradient(ellipse at center,rgba(103,65,170,.12),transparent 65%);
 }
-
-@keyframes cosmicPulse {
-  from { filter: brightness(.8); }
-  to { filter: brightness(1.3); }
+/* THE OTHER WORLD */
+body.otherworld #experience::after {
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.38),transparent 38%,rgba(0,0,0,.72)),
+    radial-gradient(ellipse at center,rgba(170,65,210,.10),transparent 70%);
 }
- /* COSMIC STARS */
-body.cosmic #experience {
-  background-image:
-    radial-gradient(2px 2px at 15% 25%, white 50%, transparent 100%),
-    radial-gradient(2px 2px at 75% 20%, white 50%, transparent 100%),
-    radial-gradient(2px 2px at 45% 70%, #b9d8ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 85% 80%, white 50%, transparent 100%),
-    radial-gradient(2px 2px at 30% 90%, #c6a5ff 50%, transparent 100%),
-    radial-gradient(2px 2px at 60% 45%, white 50%, transparent 100%);
-  background-size: 100% 100%;
-  animation: starTwinkle 4s ease-in-out infinite alternate;
+/* THE MOON */
+body.moon #experience::before {
+  background: linear-gradient(160deg,#101b2b,#080d19 70%,#02040a);
 }
-
-@keyframes starTwinkle {
-  from { opacity: .3; }
-  to { opacity: 1; }
+body.moon #experience::after {
+  background:
+    linear-gradient(180deg,rgba(5,10,20,.42),transparent 40%,rgba(5,10,20,.75));
 }
-@media(max-width:480px){
-  .eyebrow{letter-spacing:3px}
-  button{padding:13px 18px}
+/* FINAL MESSAGE */
+body.ending #experience::after {
+  background: linear-gradient(
+    180deg,
+    rgba(5,10,20,.65),
+    rgba(5,10,20,.25) 40%,
+    rgba(5,10,20,.85)
+  );
+}
+@media(max-width:480px) {
+  .content {
+    padding-top: 85px;
+    padding-bottom: 65px;
+  }
+  .eyebrow { letter-spacing: 2.5px; }
+  h1 { letter-spacing: 1px; }
+  p { font-size: 19px; }
+  button { padding: 13px 17px; }
 }
 </style>
 </head>
 <body>
-
 <button id="music" onclick="toggleMusic()">♫ SOUND OFF</button>
 <audio id="ambience" loop preload="none">
   <source src="audio/ambient.mp3" type="audio/mpeg">
 </audio>
-
 <main id="experience">
   <img class="scene-image" id="sceneImage" alt="">
-  <div class="content fade" id="content"></div>
+  <div class="content fade" id="content">
+    <div class="story-top" id="storyTop"></div>
+    <div class="story-bottom" id="storyBottom"></div>
+  </div>
 </main>
 <div id="progress"></div>
-
 <script>
 const chapters = [
-{
-  eyebrow:"A STORY BEGINS",
-  title:"BIRTHDAY WRITTEN<br>IN THE MOONLIGHT",
-  text:"Some nights are meant to be remembered.<br>And some stories are written in the moonlight.",
-  button:"ENTER THE NIGHT",
-  image:"images/intro.jpg"
-},
-{
-  eyebrow:"CHAPTER I · THE BEGINNING OF THE END",
-  title:"DAWN OF THE DEAD",
-  text:"The world has fallen. Survival is no longer optional.<br>But even in a world gone dark, a new chapter begins.",
-  button:"START SURVIVAL",
-  image:"images/chapter-01.jpg"
-},
-{
-  eyebrow:"CHAPTER II · BEYOND THE UNKNOWN",
-  title:"THE FORGOTTEN WOODS",
-  text:"Not every path leads somewhere familiar.<br>Sometimes, the most beautiful things are found in the unknown.",
-  button:"FOLLOW THE LIGHT",
-  image:"images/chapter-02.jpg"
-},
-{
-  eyebrow:"CHAPTER III · THE LONG ROAD",
-  title:"THE WALKING DEAD",
-  text:"Through every storm, every ending, every new beginning...<br>Keep walking. Your story isn't over.",
-  button:"KEEP WALKING",
-  image:"images/chapter-03.jpg"
-},
-{
-  eyebrow:"CHAPTER IV · ANOTHER REALITY",
-  title:"THE OTHER WORLD",
-  text:"What if the universe is stranger and more beautiful than we imagine?<br>Somewhere between reality and dreams, another world awaits.",
-  button:"CROSS OVER",
-  image:"images/chapter-04.jpg"
-},
-{
-  eyebrow:"THE FINAL CHAPTER",
-  title:"THE MOON REMEMBERS",
-  text:"Of all the worlds, all the paths, and all the endless nights...<br>the moon has witnessed a story that deserves a beautiful ending.",
-  button:"REVEAL THE SECRET",
-  image:"images/final.jpg"
-},
-{
-  eyebrow:"NOVEMBER 12 · YOUR DAY",
-  title:"HAPPY 29TH BIRTHDAY",
-  text:"Another chapter begins, and I hope life surprises you with beautiful moments, unexpected blessings, and reasons to smile.<br><br>Distance may separate two places, but the moon still watches over both.<br><br>And if the moon could tell stories, it would know how much love it has witnessed.<br><br>With love, beneath the same moon.",
-  button:"READ AGAIN",
-  image:"images/final.jpg"
-}
+  {
+    theme: "intro",
+    eyebrow: "A STORY BEGINS",
+    title: "BIRTHDAY WRITTEN<br>IN THE MOONLIGHT",
+    text: "Some nights are meant to be remembered.<br>And some stories are written in the moonlight.",
+    button: "ENTER THE NIGHT",
+    image: "images/01.jpeg"
+  },
+  {
+    theme: "zombie",
+    eyebrow: "CHAPTER I · THE BEGINNING OF THE END",
+    title: "DAWN OF THE DEAD",
+    text: "The world has fallen. Survival is no longer optional.<br>But even in a world gone dark, a new chapter begins.",
+    button: "START SURVIVAL",
+    image: "images/02.jpeg"
+  },
+  {
+    theme: "woods",
+    eyebrow: "CHAPTER II · BEYOND THE UNKNOWN",
+    title: "THE FORGOTTEN WOODS",
+    text: "Not every path leads somewhere familiar.<br>Sometimes, the most beautiful things are found in the unknown.",
+    button: "FOLLOW THE LIGHT",
+    image: "images/03.jpeg"
+  },
+  {
+    theme: "walkingdead",
+    eyebrow: "CHAPTER III · THE LONG ROAD",
+    title: "THE WALKING DEAD",
+    text: "Through every storm, every ending, every new beginning...<br>Keep walking. Your story isn't over.",
+    button: "KEEP WALKING",
+    image: "images/04.jpeg"
+  },
+  {
+    theme: "gate",
+    eyebrow: "CHAPTER IV · THE PASSAGE",
+    title: "THE GATE",
+    text: "Some doors are not made of wood or stone.<br>Some are written in the stars.",
+    button: "ENTER THE GATE",
+    image: "images/05.jpeg"
+  },
+  {
+    theme: "otherworld",
+    eyebrow: "CHAPTER V · BEYOND REALITY",
+    title: "THE OTHER WORLD",
+    text: "Here, the impossible becomes beautiful.<br>A universe of wonder, freedom, love and peace.",
+    button: "EXPLORE THIS WORLD",
+    image: "images/06.jpeg"
+  },
+  {
+    theme: "moon",
+    eyebrow: "CHAPTER VI · THE WAY HOME",
+    title: "THE MOON REMEMBERS",
+    text: "The storm has passed.<br>Across the river, the people he loves are waiting.<br>He is closer than ever to home.",
+    button: "LOOK CLOSER",
+    image: "images/07.jpeg"
+  },
+  {
+    theme: "ending",
+    eyebrow: "NOVEMBER 12 · YOUR DAY",
+    title: "HAPPY 29TH BIRTHDAY",
+    text: "Another chapter begins, and I hope life surprises you with beautiful moments, unexpected blessings, and reasons to smile.<br><br>Distance may separate two places, but the moon still watches over both.<br><br>And if the moon could tell stories, it would know how much love it has witnessed.<br><br>With love, beneath the same moon.",
+    button: "EXPERIENCE AGAIN",
+    image: "images/07.jpeg"
+  }
 ];
-
 let current = 0;
 let musicOn = false;
 const content = document.getElementById("content");
+const storyTop = document.getElementById("storyTop");
+const storyBottom = document.getElementById("storyBottom");
 const sceneImage = document.getElementById("sceneImage");
 const progress = document.getElementById("progress");
 const audio = document.getElementById("ambience");
-
-function showChapter(index){
+const musicButton = document.getElementById("music");
+function showChapter(index) {
   current = index;
-  document.body.classList.toggle("cosmic", index === 4);
-  const c = chapters[current];
+  const chapter = chapters[current];
+  document.body.className = chapter.theme;
   content.classList.remove("fade");
   void content.offsetWidth;
   content.classList.add("fade");
-
-  content.innerHTML = `
-    ${current === 0 ? '<div class="moon"></div>' : ''}
-    <div class="eyebrow">${c.eyebrow}</div>
-    <h1>${c.title}</h1>
-    <p>${c.text}</p>
-    <button onclick="${current === chapters.length-1 ? 'showChapter(0)' : 'nextChapter()'}">${c.button}</button>
+  storyTop.innerHTML = `
+    <div class="eyebrow">${chapter.eyebrow}</div>
+    <h1>${chapter.title}</h1>
   `;
-
+  storyBottom.innerHTML = `
+    <p>${chapter.text}</p>
+    <div class="navigation">
+      ${current > 0
+        ? '<button onclick="previousChapter()">PREVIOUS</button>'
+        : ''}
+      <button onclick="nextChapter()">
+        ${current === chapters.length - 1
+          ? 'EXPERIENCE AGAIN'
+          : chapter.button}
+      </button>
+    </div>
+  `;
   sceneImage.style.display = "none";
-  sceneImage.src = c.image;
-  sceneImage.onload = () => { sceneImage.style.display = "block"; };
-  progress.style.width = (current/(chapters.length-1)*100) + "%";
-  window.scrollTo(0,0);
+  sceneImage.onload = () => {
+    sceneImage.style.display = "block";
+  };
+  sceneImage.onerror = () => {
+    sceneImage.style.display = "none";
+    console.error("Image not found:", chapter.image);
+  };
+  sceneImage.src = chapter.image;
+  progress.style.width =
+    (current / (chapters.length - 1) * 100) + "%";
 }
-
-function nextChapter(){
-  if(current < chapters.length-1) showChapter(current+1);
-}
-
-async function toggleMusic(){
-  const button = document.getElementById("music");
-  if(!musicOn){
-    try{
-      await audio.play();
-      musicOn = true;
-      button.textContent = "♫ SOUND ON";
-    }catch(e){
-      button.textContent = "♫ ADD MUSIC FILE";
-    }
-  }else{
-    audio.pause();
-    musicOn = false;
-    button.textContent = "♫ SOUND OFF";
+function nextChapter() {
+  if (current < chapters.length - 1) {
+    showChapter(current + 1);
+  } else {
+    showChapter(0);
   }
 }
-
+function previousChapter() {
+  if (current > 0) {
+    showChapter(current - 1);
+  }
+}
+async function toggleMusic() {
+  if (!musicOn) {
+    try {
+      await audio.play();
+      musicOn = true;
+      musicButton.textContent = "♫ SOUND ON";
+    } catch (error) {
+      musicButton.textContent = "♫ ADD MUSIC FILE";
+    }
+  } else {
+    audio.pause();
+    musicOn = false;
+    musicButton.textContent = "♫ SOUND OFF";
+  }
+}
 showChapter(0);
 </script>
 </body>
