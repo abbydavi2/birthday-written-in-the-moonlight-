@@ -369,6 +369,60 @@ body.ending #effects::before {
     animation: none !important;
   }
 }
+  /* INTERACTIVE SCENES */
+.flashlight-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: auto;
+  opacity: 0;
+  background: radial-gradient(
+    circle 125px at var(--light-x, 50%) var(--light-y, 50%),
+    rgba(255,255,220,.28),
+    rgba(255,255,220,.08) 45%,
+    rgba(0,0,0,.82) 100%
+  );
+  transition: opacity .5s ease;
+  cursor: crosshair;
+}
+
+.flashlight-overlay.active {
+  opacity: 1;
+}
+
+.firefly {
+  position: absolute;
+  z-index: 3;
+  width: 18px;
+  height: 18px;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #caffd9;
+  box-shadow:
+    0 0 8px 4px rgba(150,255,190,.7),
+    0 0 25px 10px rgba(100,255,160,.3);
+  animation: fireflyGlow 2s ease-in-out infinite alternate;
+  cursor: pointer;
+}
+
+.firefly.found {
+  opacity: 0;
+  transform: scale(2);
+  pointer-events: none;
+  transition: .5s ease;
+}
+
+@keyframes fireflyGlow {
+  from { opacity: .45; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.25); }
+}
+
+body.woods #effects.complete {
+  filter: brightness(1.35);
+}
 </style>
 </head>
 <body>
@@ -464,6 +518,56 @@ const musicButton = document.getElementById("music");
   const effects = document.getElementById("effects");
 
 function createParticles(theme) {
+  function createSceneInteraction(theme) {
+  if (theme === "zombie") {
+    const flashlight = document.createElement("div");
+    flashlight.className = "flashlight-overlay";
+    flashlight.setAttribute("aria-label", "Tap to use flashlight");
+
+    flashlight.addEventListener("click", (event) => {
+      const x = event.clientX / window.innerWidth * 100;
+      const y = event.clientY / window.innerHeight * 100;
+
+      flashlight.style.setProperty("--light-x", x + "%");
+      flashlight.style.setProperty("--light-y", y + "%");
+      flashlight.classList.add("active");
+    });
+
+    effects.appendChild(flashlight);
+  }
+
+  if (theme === "woods") {
+    const positions = [
+      { left: "25%", top: "42%" },
+      { left: "70%", top: "52%" },
+      { left: "48%", top: "72%" }
+    ];
+
+    let found = 0;
+
+    positions.forEach((position) => {
+      const firefly = document.createElement("button");
+      firefly.className = "firefly";
+      firefly.setAttribute("aria-label", "Catch a firefly");
+      firefly.style.left = position.left;
+      firefly.style.top = position.top;
+
+      firefly.addEventListener("click", () => {
+        if (firefly.classList.contains("found")) return;
+
+        firefly.classList.add("found");
+        found++;
+
+        if (found === 3) {
+          effects.classList.add("complete");
+          sceneImage.classList.add("effect-active");
+        }
+      });
+
+      effects.appendChild(firefly);
+    });
+  }
+}
   effects.innerHTML = "";
 
   const settings = {
@@ -502,7 +606,8 @@ function showChapter(index) {
   current = index;
   const chapter = chapters[current];
   document.body.className = chapter.theme;
-  createParticles(chapter.theme);
+createParticles(chapter.theme);
+createSceneInteraction(chapter.theme);
   content.classList.remove("fade");
   void content.offsetWidth;
   content.classList.add("fade");
