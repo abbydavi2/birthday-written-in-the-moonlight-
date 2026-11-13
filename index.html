@@ -214,6 +214,161 @@ body.ending #experience::after {
   p { font-size: 19px; }
   button { padding: 13px 17px; }
 }
+  /* CINEMATIC EFFECTS */
+#effects {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#experience {
+  touch-action: manipulation;
+}
+
+.scene-image {
+  transition: opacity 1s ease, filter 1s ease;
+  will-change: transform, opacity;
+}
+
+#sceneImage.effect-active {
+  filter: brightness(1.12) contrast(1.08);
+}
+
+.effect-particle {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  animation: particleFloat var(--duration, 5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 25px, 0) scale(.5);
+  }
+  25% { opacity: var(--opacity, .7); }
+  75% { opacity: var(--opacity, .7); }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 20px), -100px, 0) scale(1.3);
+  }
+}
+
+#effects::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+body.intro #effects::before {
+  opacity: .65;
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(210,225,220,.20),
+    transparent 38%
+  );
+  animation: moonPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes moonPulse {
+  from { transform: scale(.95); opacity: .35; }
+  to { transform: scale(1.08); opacity: .8; }
+}
+
+body.zombie #effects::before {
+  opacity: .8;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 15%,
+    rgba(0,0,0,.35) 75%
+  );
+}
+
+body.woods .effect-particle {
+  background: #b8ffd7;
+  box-shadow: 0 0 12px 4px rgba(115,255,190,.65);
+}
+
+body.gate .effect-particle {
+  background: #d8c4ff;
+  box-shadow: 0 0 14px 4px rgba(175,120,255,.8);
+}
+
+body.otherworld .effect-particle {
+  background: #e9aaff;
+  box-shadow: 0 0 15px 5px rgba(190,90,255,.7);
+}
+
+body.moon #effects::before {
+  opacity: .65;
+  background: linear-gradient(
+    0deg,
+    transparent 35%,
+    rgba(170,200,255,.16) 60%,
+    transparent 80%
+  );
+  animation: riverShimmer 4s ease-in-out infinite alternate;
+}
+
+@keyframes riverShimmer {
+  from { transform: translateX(-3%) scaleY(.95); }
+  to { transform: translateX(3%) scaleY(1.05); }
+}
+
+body.ending #effects::before {
+  opacity: .8;
+  background: radial-gradient(
+    circle at 50% 65%,
+    rgba(255,55,35,.25),
+    transparent 48%
+  );
+  animation: flarePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes flarePulse {
+  from { opacity: .25; }
+  to { opacity: .9; }
+}
+
+.scene-hint {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.72);
+  margin: 10px auto;
+  animation: hintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+#effects.active {
+  animation: effectFlash .7s ease;
+}
+
+@keyframes effectFlash {
+  0% { opacity: .3; }
+  45% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .effect-particle,
+  #effects::before,
+  .scene-hint {
+    animation: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -222,6 +377,7 @@ body.ending #experience::after {
   <source src="audio/ambient.mp3" type="audio/mpeg">
 </audio>
 <main id="experience">
+  <div id="effects"></div>
   <img class="scene-image" id="sceneImage" alt="">
   <div class="content fade" id="content">
     <div class="story-top" id="storyTop"></div>
