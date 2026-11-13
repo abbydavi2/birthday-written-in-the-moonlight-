@@ -103,26 +103,21 @@ body.cosmic #experience::before {
   from { filter: brightness(.8); }
   to { filter: brightness(1.3); }
 }
-  /* COSMIC STARS */
-body.cosmic #experience::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
+ /* COSMIC STARS */
+body.cosmic #experience {
   background-image:
     radial-gradient(2px 2px at 15% 25%, white 50%, transparent 100%),
-    radial-gradient(1px 1px at 75% 20%, white 50%, transparent 100%),
+    radial-gradient(2px 2px at 75% 20%, white 50%, transparent 100%),
     radial-gradient(2px 2px at 45% 70%, #b9d8ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 85% 80%, white 50%, transparent 100%),
+    radial-gradient(2px 2px at 85% 80%, white 50%, transparent 100%),
     radial-gradient(2px 2px at 30% 90%, #c6a5ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 60% 45%, white 50%, transparent 100%);
+    radial-gradient(2px 2px at 60% 45%, white 50%, transparent 100%);
   background-size: 100% 100%;
   animation: starTwinkle 4s ease-in-out infinite alternate;
 }
 
 @keyframes starTwinkle {
-  from { opacity: .25; }
+  from { opacity: .3; }
   to { opacity: 1; }
 }
 @media(max-width:480px){
