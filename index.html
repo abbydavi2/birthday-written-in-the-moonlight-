@@ -530,32 +530,61 @@ body.woods #effects.complete {
 .gun-flash::before {
   content: "";
   position: absolute;
-  inset: 12px;
+  inset: 4px;
   border-radius: 50%;
-  background: rgba(255,225,150,.15);
-  box-shadow: 0 0 12px 5px rgba(255,210,130,.25);
-  animation: muzzlePulse 2s infinite alternate;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #fff7c2 20%,
+    rgba(255, 190, 70, .9) 42%,
+    rgba(255, 100, 20, 0) 75%
+  );
+  box-shadow:
+    0 0 10px 5px rgba(255, 230, 160, .6),
+    0 0 24px 12px rgba(255, 140, 40, .4);
+  opacity: .25;
 }
 
 .gun-flash.active::before {
-  animation: muzzleBurst .45s ease-out;
+  animation: muzzleBurst .35s ease-out;
 }
 
-@keyframes muzzlePulse {
-  to {
-    opacity: .8;
-    transform: scale(1.35);
-  }
+.gun-flash::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background: #fff8d6;
+  clip-path: polygon(
+    50% 0%, 60% 38%, 100% 50%,
+    60% 62%, 50% 100%, 40% 62%,
+    0% 50%, 40% 38%
+  );
+  opacity: 0;
+}
+
+.gun-flash.active::after {
+  animation: muzzleRays .25s ease-out;
 }
 
 @keyframes muzzleBurst {
   0% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(.5);
   }
   100% {
     opacity: 0;
     transform: scale(4);
+  }
+}
+
+@keyframes muzzleRays {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
   }
 }
 </style>
