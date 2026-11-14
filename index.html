@@ -625,6 +625,7 @@ body.ending #effects::before {
 
 /* The moon */
 body.ending #effects::after {
+  display: none;
   content: "";
   position: absolute;
   width: clamp(95px, 24vw, 155px);
@@ -774,6 +775,7 @@ body.ending .navigation button:hover {
 }
   /* BIRTHDAY SPARKLER */
 .birthday-sparkler {
+  pointer-events: auto;
   position: absolute;
   right: 16%;
   bottom: 13%;
@@ -800,7 +802,7 @@ body.ending .navigation button:hover {
 .sparkler-flame {
   position: absolute;
   left: 34px;
-  top: 12px;
+  top: 42px;
   width: 22px;
   height: 28px;
   border-radius: 50% 50% 45% 45%;
@@ -811,6 +813,8 @@ body.ending .navigation button:hover {
 
 .sparkler-flame::before,
 .sparkler-flame::after {
+  position: absolute;
+display: block;
   content: "";
   position: absolute;
   left: 50%;
