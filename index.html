@@ -478,6 +478,37 @@ body.woods #effects.complete {
     transform: translateY(0) scale(1) rotate(var(--turn));
   }
 }
+  /* THE GATE - STAR ACTIVATION */
+.gate-star {
+  position: absolute;
+  z-index: 2;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #eadbff;
+  box-shadow:
+    0 0 8px 3px rgba(190,140,255,.8),
+    0 0 20px 7px rgba(145,80,255,.4);
+  opacity: 0;
+  transform: scale(.2);
+  animation: gateStarAppear 1.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes gateStarAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.2);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: .85;
+    transform: scale(1);
+  }
+}
 </style>
 </head>
 <body>
@@ -677,6 +708,26 @@ function createSceneInteraction(theme) {
       footprint.style.top = step.top;
       footprint.style.animationDelay = step.delay;
       effects.appendChild(footprint);
+    });
+  }
+  if (theme === "gate") {
+    const stars = [
+      { left: "35%", top: "35%", delay: "0s" },
+      { left: "48%", top: "25%", delay: "1s" },
+      { left: "62%", top: "34%", delay: "2s" },
+      { left: "70%", top: "49%", delay: "3s" },
+      { left: "55%", top: "60%", delay: "4s" },
+      { left: "39%", top: "55%", delay: "5s" },
+      { left: "48%", top: "43%", delay: "6s" }
+    ];
+
+    stars.forEach((point) => {
+      const star = document.createElement("span");
+      star.className = "gate-star";
+      star.style.left = point.left;
+      star.style.top = point.top;
+      star.style.animationDelay = point.delay;
+      effects.appendChild(star);
     });
   }
 }
