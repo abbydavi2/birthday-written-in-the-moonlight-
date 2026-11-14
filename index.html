@@ -587,6 +587,191 @@ body.woods #effects.complete {
     transform: scale(2.5);
   }
 }
+  /* =================================
+   FINAL CHAPTER — UNDER THE SAME MOON
+================================= */
+
+body.ending #experience::before {
+  background:
+    radial-gradient(
+      ellipse at 50% 22%,
+      rgba(8,118,83,.32),
+      transparent 48%
+    ),
+    linear-gradient(
+      160deg,
+      #071b14,
+      #030a08 65%,
+      #020403
+    );
+}
+
+/* Lunar atmosphere */
+body.ending #effects::before {
+  opacity: .9;
+  background:
+    radial-gradient(
+      circle at 50% 24%,
+      rgba(210,230,220,.17),
+      transparent 32%
+    ),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(8,118,83,.22),
+      transparent 55%
+    );
+  animation: endingAtmosphere 6s ease-in-out infinite alternate;
+}
+
+/* The moon */
+body.ending #effects::after {
+  content: "";
+  position: absolute;
+  width: clamp(95px, 24vw, 155px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 16%;
+  right: 12%;
+  background:
+    radial-gradient(
+      circle at 35% 35%,
+      #ffffff,
+      #e8eee9 35%,
+      #b8c9bf 68%,
+      #829c8e 100%
+    );
+  box-shadow:
+    0 0 20px rgba(220,240,225,.35),
+    0 0 55px rgba(180,220,200,.22),
+    0 0 100px rgba(8,118,83,.18);
+  opacity: 0;
+  transform: scale(.5);
+  animation: moonReveal 3s ease 0.5s forwards,
+             moonBreathing 6s ease-in-out 3.5s infinite alternate;
+}
+
+@keyframes moonReveal {
+  to {
+    opacity: .85;
+    transform: scale(1);
+  }
+}
+
+@keyframes moonBreathing {
+  from {
+    box-shadow:
+      0 0 20px rgba(220,240,225,.3),
+      0 0 55px rgba(180,220,200,.2);
+  }
+  to {
+    box-shadow:
+      0 0 30px rgba(220,240,225,.55),
+      0 0 85px rgba(180,220,200,.35),
+      0 0 120px rgba(8,118,83,.25);
+  }
+}
+
+@keyframes endingAtmosphere {
+  from { opacity: .45; transform: scale(.96); }
+  to { opacity: .95; transform: scale(1.06); }
+}
+
+/* Emerald and silver particles */
+body.ending .effect-particle {
+  background: #dcebe1 !important;
+  box-shadow:
+    0 0 7px 2px rgba(220,240,225,.65),
+    0 0 18px 4px rgba(8,118,83,.4);
+}
+
+/* Cinematic photograph */
+body.ending .scene-image {
+  filter: brightness(.88) contrast(1.08) saturate(1.08);
+}
+
+body.ending #sceneImage.effect-active {
+  filter: brightness(1.12) contrast(1.1) saturate(1.2);
+}
+
+/* Final message appearance */
+body.ending .content.fade h1 {
+  animation: endingTitle 2s ease both;
+}
+
+body.ending .content.fade .eyebrow {
+  animation: endingTitle 1.5s ease both;
+}
+
+body.ending .content.fade .story-bottom p {
+  animation: endingMessage 2.5s ease .6s both;
+}
+
+@keyframes endingTitle {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+    letter-spacing: 7px;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 2px;
+  }
+}
+
+@keyframes endingMessage {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Elegant final buttons */
+body.ending .navigation button {
+  border: 1px solid rgba(195,225,207,.65);
+  background: linear-gradient(
+    135deg,
+    rgba(8,118,83,.35),
+    rgba(0,0,0,.65)
+  );
+  color: #e5eee8;
+  box-shadow: 0 0 18px rgba(8,118,83,.15);
+  letter-spacing: 2.5px;
+  transition: all .5s ease;
+}
+
+body.ending .navigation button:hover {
+  background: rgba(8,118,83,.65);
+  box-shadow:
+    0 0 15px rgba(8,118,83,.5),
+    0 0 35px rgba(8,118,83,.25);
+  transform: translateY(-3px);
+}
+
+/* Mobile positioning */
+@media(max-width:480px) {
+  body.ending #effects::after {
+    top: 17%;
+    right: 8%;
+    width: 105px;
+  }
+}
+
+/* Accessibility */
+@media(prefers-reduced-motion:reduce) {
+  body.ending #effects::after,
+  body.ending #effects::before {
+    animation: none !important;
+    opacity: .8;
+    transform: none;
+  }
+}
 </style>
 </head>
 <body>
