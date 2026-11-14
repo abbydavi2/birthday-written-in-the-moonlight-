@@ -710,6 +710,59 @@ function createSceneInteraction(theme) {
       effects.appendChild(footprint);
     });
   }
+  /* WALKING DEAD - INTERACTIVE MUZZLE FLASH */
+.gun-flash {
+  position: absolute;
+  z-index: 4;
+  left: 61.5%;
+  top: 46%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.gun-flash::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: rgba(255,225,150,.15);
+  box-shadow: 0 0 12px 5px rgba(255,210,130,.25);
+  animation: muzzlePulse 2s infinite alternate;
+}
+
+.gun-flash.active::before {
+  animation: muzzleBurst .45s ease-out;
+}
+
+@keyframes muzzlePulse {
+  to { opacity: .8; transform: scale(1.35); }
+}
+
+@keyframes muzzleBurst {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(4); }
+}
+  if (theme === "walkingdead") {
+    const gunFlash = document.createElement("button");
+    gunFlash.className = "gun-flash";
+    gunFlash.setAttribute("aria-label", "Activate the light");
+
+    gunFlash.addEventListener("click", () => {
+      gunFlash.classList.remove("active");
+      void gunFlash.offsetWidth;
+      gunFlash.classList.add("active");
+    });
+
+    effects.appendChild(gunFlash);
+  }
   if (theme === "gate") {
     const stars = [
       { left: "35%", top: "35%", delay: "0s" },
