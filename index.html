@@ -1146,6 +1146,7 @@ function createSceneInteraction(theme) {
     `;
 
     sparkler.addEventListener("click", () => {
+      alert("SPARKLER ACTIVATED");
       if (sparkler.classList.contains("lit")) return;
 
       sparkler.classList.add("lit");
