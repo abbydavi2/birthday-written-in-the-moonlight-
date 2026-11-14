@@ -759,15 +759,6 @@ function createSceneInteraction(theme) {
       effects.appendChild(footprint);
     });
   }
-
-@keyframes muzzlePulse {
-  to { opacity: .8; transform: scale(1.35); }
-}
-
-@keyframes muzzleBurst {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(4); }
-}
   if (theme === "walkingdead") {
     const gunFlash = document.createElement("button");
     gunFlash.className = "gun-flash";
